@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: sh -c "cd grpc && python generate_proto.py && cd .. && python manage.py runserver 0.0.0.0:${PORT}"
+    volumes:
+      - .:/app
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - AUTH_SERVICE_HOST=${AUTH_SERVICE_HOST:-auth-grpc}
+      - AUTH_SERVICE_PORT=${AUTH_SERVICE_PORT:-50051}
+    networks:
+      - microservice-network
+
+networks:
+  microservice-network:
+    external: true
+    name: django_auth_microservice-network

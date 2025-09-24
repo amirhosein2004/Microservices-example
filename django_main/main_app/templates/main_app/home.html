@@ -1,0 +1,45 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %}صفحه اصلی - سیستم احراز هویت{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body text-center p-5">
+                <h1 class="card-title mb-4">به سیستم احراز هویت خوش آمدید</h1>
+                <p class="card-text lead mb-4">این سیستم با استفاده از معماری میکروسرویس و gRPC طراحی شده است</p>
+                
+                {% if not request.session.username %}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">ثبت نام</h5>
+                                    <p class="card-text">حساب کاربری جدید ایجاد کنید</p>
+                                    <a href="{% url 'register' %}" class="btn btn-custom">ثبت نام</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">ورود</h5>
+                                    <p class="card-text">به حساب کاربری خود وارد شوید</p>
+                                    <a href="{% url 'login' %}" class="btn btn-custom">ورود</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="alert alert-success">
+                        <h4>شما وارد شده‌اید!</h4>
+                        <p>خوش آمدید {{ request.session.username }}</p>
+                        <a href="{% url 'dashboard' %}" class="btn btn-custom">رفتن به داشبورد</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

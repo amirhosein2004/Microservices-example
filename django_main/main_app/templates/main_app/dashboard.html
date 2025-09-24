@@ -1,0 +1,45 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %}داشبورد - سیستم احراز هویت{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header text-center">
+                <h3>داشبورد کاربری</h3>
+            </div>
+            <div class="card-body">
+                <div class="text-center">
+                    <h4 class="mb-4">خوش آمدید، {{ username }}!</h4>
+                    <p class="lead">شما با موفقیت وارد سیستم شده‌اید.</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">وضعیت</h5>
+                                    <p class="card-text text-success">✓ وارد شده</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">نام کاربری</h5>
+                                    <p class="card-text">{{ username }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <a href="{% url 'logout' %}" class="btn btn-outline-danger">خروج از سیستم</a>
+                        <a href="{% url 'home' %}" class="btn btn-custom ms-2">بازگشت به صفحه اصلی</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
