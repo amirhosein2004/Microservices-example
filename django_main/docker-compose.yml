@@ -3,7 +3,10 @@ version: '3.8'
 services:
   web:
     build: .
-    command: sh -c "cd grpc && python generate_proto.py && cd .. && python manage.py runserver 0.0.0.0:${PORT}"
+    command: sh -c "python manage.py makemigrations &&
+                    python manage.py migrate &&
+                    cd grpc && python generate_proto.py && cd .. &&
+                    python manage.py runserver 0.0.0.0:${PORT}"
     volumes:
       - .:/app
     ports:

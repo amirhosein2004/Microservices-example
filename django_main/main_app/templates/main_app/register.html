@@ -4,60 +4,175 @@
 
 {% block content %}
 <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-lg-6 col-md-8">
         <div class="card">
             <div class="card-header text-center">
+                <div class="icon-feature mb-3">
+                    <i class="fas fa-user-plus"></i>
+                </div>
                 <h3>ثبت نام کاربر جدید</h3>
+                <p class="mb-0 text-white-50">حساب کاربری خود را ایجاد کنید</p>
             </div>
-            <div class="card-body">
-                <form method="post">
+            <div class="card-body p-4">
+                <form method="post" class="needs-validation" novalidate>
                     {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="{{ form.username.id_for_label }}" class="form-label">نام کاربری</label>
-                        {{ form.username }}
+                    
+                    <div class="mb-4">
+                        <label for="{{ form.username.id_for_label }}" class="form-label fw-semibold">
+                            <i class="fas fa-user me-2 text-primary"></i>نام کاربری
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0">
+                                <i class="fas fa-user text-muted"></i>
+                            </span>
+                            {{ form.username }}
+                        </div>
+                        <small class="form-text text-muted">
+                            <i class="fas fa-info-circle me-1"></i>نام کاربری باید منحصر به فرد باشد
+                        </small>
                         {% if form.username.errors %}
-                            <div class="text-danger">
+                            <div class="text-danger mt-2">
                                 {% for error in form.username.errors %}
-                                    <small>{{ error }}</small>
+                                    <small><i class="fas fa-exclamation-circle me-1"></i>{{ error }}</small>
                                 {% endfor %}
                             </div>
                         {% endif %}
                     </div>
                     
-                    <div class="mb-3">
-                        <label for="{{ form.password.id_for_label }}" class="form-label">رمز عبور</label>
-                        {{ form.password }}
+                    <div class="mb-4">
+                        <label for="{{ form.password.id_for_label }}" class="form-label fw-semibold">
+                            <i class="fas fa-lock me-2 text-primary"></i>رمز عبور
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0">
+                                <i class="fas fa-lock text-muted"></i>
+                            </span>
+                            {{ form.password }}
+                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength mt-2">
+                            <div class="progress" style="height: 5px;">
+                                <div class="progress-bar" id="passwordStrength" role="progressbar" style="width: 0%"></div>
+                            </div>
+                            <small class="form-text text-muted" id="passwordHelp">
+                                <i class="fas fa-shield-alt me-1"></i>رمز عبور قوی انتخاب کنید
+                            </small>
+                        </div>
                         {% if form.password.errors %}
-                            <div class="text-danger">
+                            <div class="text-danger mt-2">
                                 {% for error in form.password.errors %}
-                                    <small>{{ error }}</small>
+                                    <small><i class="fas fa-exclamation-circle me-1"></i>{{ error }}</small>
                                 {% endfor %}
                             </div>
                         {% endif %}
                     </div>
                     
-                    <div class="mb-3">
-                        <label for="{{ form.email.id_for_label }}" class="form-label">ایمیل (اختیاری)</label>
-                        {{ form.email }}
+                    <div class="mb-4">
+                        <label for="{{ form.email.id_for_label }}" class="form-label fw-semibold">
+                            <i class="fas fa-envelope me-2 text-primary"></i>ایمیل <span class="text-muted">(اختیاری)</span>
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0">
+                                <i class="fas fa-envelope text-muted"></i>
+                            </span>
+                            {{ form.email }}
+                        </div>
+                        <small class="form-text text-muted">
+                            <i class="fas fa-info-circle me-1"></i>برای بازیابی رمز عبور استفاده می‌شود
+                        </small>
                         {% if form.email.errors %}
-                            <div class="text-danger">
+                            <div class="text-danger mt-2">
                                 {% for error in form.email.errors %}
-                                    <small>{{ error }}</small>
+                                    <small><i class="fas fa-exclamation-circle me-1"></i>{{ error }}</small>
                                 {% endfor %}
                             </div>
                         {% endif %}
                     </div>
                     
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-custom">ثبت نام</button>
+                    <div class="mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                            <label class="form-check-label" for="agreeTerms">
+                                با <a href="#" class="text-primary">قوانین و مقررات</a> موافقم
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 mb-4">
+                        <button type="submit" class="btn btn-custom btn-lg">
+                            <i class="fas fa-user-plus me-2"></i>ایجاد حساب کاربری
+                        </button>
                     </div>
                 </form>
                 
-                <div class="text-center mt-3">
-                    <p>قبلاً ثبت نام کرده‌اید؟ <a href="{% url 'login' %}">وارد شوید</a></p>
+                <hr class="my-4">
+                
+                <div class="text-center">
+                    <p class="mb-2">قبلاً حساب کاربری دارید؟</p>
+                    <a href="{% url 'login' %}" class="btn btn-outline-primary">
+                        <i class="fas fa-sign-in-alt me-2"></i>وارد شوید
+                    </a>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <small class="text-muted">
+                        <i class="fas fa-shield-alt me-1"></i>
+                        اطلاعات شما با بالاترین سطح امنیت محافظت می‌شود
+                    </small>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+// Toggle password visibility
+document.getElementById('togglePassword').addEventListener('click', function() {
+    const passwordField = document.getElementById('{{ form.password.id_for_label }}');
+    const icon = this.querySelector('i');
+    
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        passwordField.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+});
+
+// Password strength indicator
+document.getElementById('{{ form.password.id_for_label }}').addEventListener('input', function() {
+    const password = this.value;
+    const strengthBar = document.getElementById('passwordStrength');
+    const helpText = document.getElementById('passwordHelp');
+    
+    let strength = 0;
+    let message = '';
+    let color = '';
+    
+    if (password.length >= 8) strength += 25;
+    if (/[a-z]/.test(password)) strength += 25;
+    if (/[A-Z]/.test(password)) strength += 25;
+    if (/[0-9]/.test(password)) strength += 25;
+    
+    if (strength < 50) {
+        message = 'رمز عبور ضعیف';
+        color = 'bg-danger';
+    } else if (strength < 75) {
+        message = 'رمز عبور متوسط';
+        color = 'bg-warning';
+    } else {
+        message = 'رمز عبور قوی';
+        color = 'bg-success';
+    }
+    
+    strengthBar.style.width = strength + '%';
+    strengthBar.className = 'progress-bar ' + color;
+    helpText.innerHTML = '<i class="fas fa-shield-alt me-1"></i>' + message;
+});
+</script>
 {% endblock %}

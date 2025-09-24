@@ -4,42 +4,160 @@
 
 {% block content %}
 <div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card">
+    <div class="col-lg-10">
+        <!-- Hero Section -->
+        <div class="card mb-5">
             <div class="card-body text-center p-5">
-                <h1 class="card-title mb-4">به سیستم احراز هویت خوش آمدید</h1>
-                <p class="card-text lead mb-4">این سیستم با استفاده از معماری میکروسرویس و gRPC طراحی شده است</p>
-                
-                {% if not request.session.username %}
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">ثبت نام</h5>
-                                    <p class="card-text">حساب کاربری جدید ایجاد کنید</p>
-                                    <a href="{% url 'register' %}" class="btn btn-custom">ثبت نام</a>
-                                </div>
-                            </div>
+                <div class="icon-feature mb-4">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h1 class="card-title mb-4 display-5 fw-bold">به سیستم احراز هویت خوش آمدید</h1>
+                <p class="card-text lead mb-4">
+                    این سیستم با استفاده از معماری میکروسرویس مدرن و پروتکل gRPC طراحی شده است
+                </p>
+                <div class="row text-center mb-4">
+                    <div class="col-md-4">
+                        <div class="icon-feature">
+                            <i class="fas fa-server"></i>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">ورود</h5>
-                                    <p class="card-text">به حساب کاربری خود وارد شوید</p>
-                                    <a href="{% url 'login' %}" class="btn btn-custom">ورود</a>
-                                </div>
-                            </div>
+                        <h6>میکروسرویس</h6>
+                        <small class="text-muted">معماری مقیاس‌پذیر</small>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="icon-feature">
+                            <i class="fas fa-bolt"></i>
                         </div>
+                        <h6>gRPC</h6>
+                        <small class="text-muted">ارتباط سریع و ایمن</small>
                     </div>
-                {% else %}
-                    <div class="alert alert-success">
-                        <h4>شما وارد شده‌اید!</h4>
-                        <p>خوش آمدید {{ request.session.username }}</p>
-                        <a href="{% url 'dashboard' %}" class="btn btn-custom">رفتن به داشبورد</a>
+                    <div class="col-md-4">
+                        <div class="icon-feature">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h6>امنیت بالا</h6>
+                        <small class="text-muted">حفاظت از اطلاعات</small>
                     </div>
-                {% endif %}
+                </div>
             </div>
         </div>
+
+        {% if not request.session.username %}
+            <!-- Authentication Options -->
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card h-100 text-center">
+                        <div class="card-body p-4">
+                            <div class="icon-feature">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <h4 class="card-title mb-3">ثبت نام</h4>
+                            <p class="card-text mb-4">
+                                حساب کاربری جدید ایجاد کنید و از امکانات سیستم استفاده کنید
+                            </p>
+                            <ul class="list-unstyled text-start mb-4">
+                                <li><i class="fas fa-check text-success me-2"></i>ایجاد حساب رایگان</li>
+                                <li><i class="fas fa-check text-success me-2"></i>دسترسی کامل به سیستم</li>
+                                <li><i class="fas fa-check text-success me-2"></i>امنیت بالا</li>
+                            </ul>
+                            <a href="{% url 'register' %}" class="btn btn-custom btn-lg">
+                                <i class="fas fa-user-plus me-2"></i>شروع ثبت نام
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 text-center">
+                        <div class="card-body p-4">
+                            <div class="icon-feature">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </div>
+                            <h4 class="card-title mb-3">ورود</h4>
+                            <p class="card-text mb-4">
+                                به حساب کاربری خود وارد شوید و به داشبورد دسترسی پیدا کنید
+                            </p>
+                            <ul class="list-unstyled text-start mb-4">
+                                <li><i class="fas fa-check text-primary me-2"></i>ورود سریع و آسان</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>داشبورد شخصی</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>مدیریت حساب</li>
+                            </ul>
+                            <a href="{% url 'login' %}" class="btn btn-secondary-custom btn-lg">
+                                <i class="fas fa-sign-in-alt me-2"></i>ورود به سیستم
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="card mt-5">
+                <div class="card-header text-center">
+                    <h3><i class="fas fa-star me-2"></i>ویژگی‌های سیستم</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="text-center">
+                                <div class="icon-feature">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <h6>پایگاه داده PostgreSQL</h6>
+                                <small class="text-muted">ذخیره‌سازی ایمن اطلاعات</small>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="text-center">
+                                <div class="icon-feature">
+                                    <i class="fas fa-docker"></i>
+                                </div>
+                                <h6>Docker Container</h6>
+                                <small class="text-muted">استقرار آسان و سریع</small>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="text-center">
+                                <div class="icon-feature">
+                                    <i class="fab fa-python"></i>
+                                </div>
+                                <h6>Django Framework</h6>
+                                <small class="text-muted">توسعه سریع و مطمئن</small>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="text-center">
+                                <div class="icon-feature">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                                <h6>gRPC Protocol</h6>
+                                <small class="text-muted">ارتباط بین سرویس‌ها</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <!-- Logged In User Section -->
+            <div class="card">
+                <div class="card-body text-center p-5">
+                    <div class="icon-feature mb-4" style="background: var(--success-gradient);">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h2 class="text-success mb-3">شما با موفقیت وارد شده‌اید!</h2>
+                    <p class="lead mb-4">خوش آمدید <strong>{{ request.session.username }}</strong></p>
+                    <div class="row g-3 justify-content-center">
+                        <div class="col-auto">
+                            <a href="{% url 'dashboard' %}" class="btn btn-custom btn-lg">
+                                <i class="fas fa-tachometer-alt me-2"></i>رفتن به داشبورد
+                            </a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="{% url 'logout' %}" class="btn btn-outline-danger btn-lg">
+                                <i class="fas fa-sign-out-alt me-2"></i>خروج از سیستم
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
