@@ -37,6 +37,9 @@ RUN poetry config virtualenvs.create false \
 # Copy project
 COPY . .
 
+# Generate proto files before running
+RUN cd grpc && python generate_proto.py
+
 # Collect static files
 RUN python manage.py collectstatic --noinput
 

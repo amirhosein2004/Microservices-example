@@ -16,6 +16,8 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+    networks:
+      - microservice-network
 
   web:
     build: .
@@ -27,6 +29,25 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    networks:
+      - microservice-network
+
+  auth-grpc:
+    build: .
+    command: sh -c "cd grpc && python generate_proto.py && python grpc_server.py"
+    volumes:
+      - .:/app
+    ports:
+      - "50051:50051"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - microservice-network
 
 volumes:
   postgres_data:
+
+networks:
+  microservice-network:
+    driver: bridge
