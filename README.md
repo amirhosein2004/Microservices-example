@@ -75,3 +75,6 @@ docker-compose up
 - سرویس `django_auth` باید قبل از `django_main` اجرا شود
 - هر دو سرویس در شبکه `microservice-network` قرار دارند
 - کلاینت gRPC به صورت خودکار در Django views فراخوانی می‌شود
+
+# future
+## in future we will add and change this repo better example
